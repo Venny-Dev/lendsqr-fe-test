@@ -1,0 +1,83 @@
+@use "../../styles/variables.scss";
+@use "../../styles/mixins.scss" as mixins;
+
+.pagination {
+  @include mixins.flex-between;
+  padding: variables.$spacing-md;
+  //   border-top: 1px solid variables.$light-border;
+  background: variables.$light-gray;
+
+  @include mixins.mobile {
+    flex-direction: column;
+    gap: variables.$spacing-md;
+  }
+}
+
+.paginationLeft {
+  @include mixins.flex-start;
+  gap: 8px;
+  font-size: 14px;
+  color: variables.$gray;
+}
+
+.select {
+  padding: 6px 12px;
+  border: 1px solid variables.$light-border;
+  border-radius: variables.$border-radius;
+  background: rgba(33, 63, 125, 0.1);
+  color: variables.$gray;
+  font-size: 14px;
+  cursor: pointer;
+  outline: none;
+}
+
+.paginationRight {
+  @include mixins.flex-start;
+  gap: 8px;
+}
+
+.pageButton {
+  @include mixins.flex-center;
+  width: 32px;
+  height: 32px;
+  border: 1px solid variables.$light-border;
+  border-radius: variables.$border-radius;
+  background: rgba(33, 63, 125, 0.1);
+  color: variables.$gray;
+  transition: all 0.2s;
+
+  &:hover:not(:disabled) {
+    background: variables.$teal;
+    color: variables.$white;
+    border-color: variables.$teal;
+  }
+
+  &:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+  }
+}
+
+.pageNumber {
+  @include mixins.flex-center;
+  width: 32px;
+  height: 32px;
+  border-radius: variables.$border-radius;
+  color: variables.$gray;
+  font-size: 14px;
+  transition: all 0.2s;
+
+  &:hover {
+    background: rgba(57, 205, 204, 0.1);
+  }
+
+  &.active {
+    background: rgba(33, 63, 125, 0.1);
+    color: variables.$primary-blue;
+  }
+}
+
+.ellipsis {
+  color: variables.$gray;
+  padding: 0 4px;
+}

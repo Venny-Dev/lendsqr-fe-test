@@ -1,0 +1,20 @@
+@use "../../styles/mixins.scss" as mixins;
+
+.content {
+  background-color: #ffffff;
+  border-radius: 4px;
+  padding: 2rem;
+  margin-top: 2rem;
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.04);
+
+  @include mixins.mobile {
+    padding: 1rem;
+  }
+}
+
+.sectionTitle {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #213f7d;
+  margin-bottom: 2rem;
+}

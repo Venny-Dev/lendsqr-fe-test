@@ -1,0 +1,24 @@
+@use "../../styles/variables.scss";
+@use "../../styles/mixins.scss" as mixins;
+
+.pageTitle {
+  font-size: 24px;
+  font-weight: 500;
+  color: variables.$primary-blue;
+  margin-bottom: variables.$spacing-lg;
+
+  @include mixins.mobile {
+    font-size: 20px;
+  }
+}
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: variables.$spacing-md;
+  margin-bottom: variables.$spacing-lg;
+
+  @include mixins.mobile {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: variables.$spacing-sm;
+  }
+}

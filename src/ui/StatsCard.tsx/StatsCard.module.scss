@@ -1,0 +1,44 @@
+@use "../../styles/variables.scss";
+@use "../../styles/mixins.scss" as mixins;
+
+.card {
+  @include mixins.card;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 200px;
+
+  @include mixins.mobile {
+    min-width: 150px;
+  }
+}
+
+.iconWrapper {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  @include mixins.flex-center;
+
+  svg {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+.label {
+  font-size: 12px;
+  font-weight: 500;
+  color: variables.$gray;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.value {
+  font-size: 24px;
+  font-weight: 600;
+  color: variables.$primary-blue;
+
+  @include mixins.mobile {
+    font-size: 20px;
+  }
+}

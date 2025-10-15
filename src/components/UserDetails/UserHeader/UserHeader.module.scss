@@ -1,0 +1,86 @@
+@use "../../../styles/mixins.scss" as mixins;
+
+.header {
+  margin-bottom: 2.5rem;
+}
+
+.backButton {
+  display: flex;
+  align-items: center;
+  gap: 0.875rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin-bottom: 1.5rem;
+  padding: 0;
+
+  span {
+    font-size: 1rem;
+    color: #545f7d;
+    font-weight: 400;
+  }
+
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+.headerContent {
+  @include mixins.flex-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.title {
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: #213f7d;
+  margin: 0;
+}
+
+.actions {
+  display: flex;
+  gap: 1.25rem;
+
+  @media (max-width: 640px) {
+    width: 100%;
+    flex-direction: column;
+  }
+}
+
+.blacklistBtn,
+.activateBtn {
+  padding: 0.75rem 2rem;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  letter-spacing: 0.05em;
+
+  @media (max-width: 640px) {
+    width: 100%;
+  }
+}
+
+.blacklistBtn {
+  background: transparent;
+  border: 1px solid #e4033b;
+  color: #e4033b;
+
+  &:hover {
+    background: #e4033b;
+    color: #ffffff;
+  }
+}
+
+.activateBtn {
+  background: transparent;
+  border: 1px solid #39cdcc;
+  color: #39cdcc;
+
+  &:hover {
+    background: #39cdcc;
+    color: #ffffff;
+  }
+}

@@ -1,0 +1,141 @@
+@use "../../styles/variables.scss";
+@use "../../styles/mixins.scss" as mixins;
+@use "sass:color";
+
+.header {
+  @include mixins.flex-between;
+  background: variables.$white;
+  height: variables.$header-height;
+  padding: 0 variables.$spacing-lg;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+
+  @include mixins.mobile {
+    padding: 0 variables.$spacing-sm;
+  }
+}
+
+.logo {
+  @include mixins.flex-start;
+  gap: 8px;
+
+  @include mixins.mobile {
+    svg {
+      width: 20px;
+      height: 20px;
+    }
+  }
+}
+
+.logoText {
+  font-size: 24px;
+  font-weight: 700;
+  color: variables.$primary-blue;
+
+  @include mixins.mobile {
+    font-size: 18px;
+  }
+}
+
+.searchContainer {
+  display: flex;
+  flex: 1;
+  max-width: 400px;
+  margin: 0 variables.$spacing-xl;
+
+  @include mixins.tablet {
+    max-width: 300px;
+    margin: 0 variables.$spacing-md;
+  }
+
+  @include mixins.mobile {
+    display: none;
+  }
+}
+
+.searchInput {
+  flex: 1;
+  padding: 10px 16px;
+  border: 1px solid rgba(33, 63, 125, 0.2);
+  border-right: none;
+  border-radius: variables.$border-radius 0 0 variables.$border-radius;
+  outline: none;
+  font-size: 14px;
+
+  &::placeholder {
+    color: rgba(84, 95, 125, 0.5);
+  }
+
+  &:focus {
+    border-color: variables.$teal;
+  }
+}
+
+.searchButton {
+  @include mixins.flex-center;
+  background: variables.$teal;
+  padding: 10px 16px;
+  border-radius: 0 variables.$border-radius variables.$border-radius 0;
+  transition: background 0.2s;
+
+  &:hover {
+    background: color.scale(variables.$teal, $lightness: -5%);
+  }
+}
+
+.headerRight {
+  @include mixins.flex-start;
+  gap: variables.$spacing-lg;
+
+  @include mixins.mobile {
+    gap: variables.$spacing-sm;
+  }
+}
+
+.docsLink {
+  color: variables.$primary-blue;
+  text-decoration: underline;
+  font-size: 14px;
+
+  @include mixins.mobile {
+    display: none;
+  }
+}
+
+.notificationButton {
+  @include mixins.flex-center;
+  position: relative;
+}
+
+.userProfile {
+  @include mixins.flex-start;
+  gap: 8px;
+  cursor: pointer;
+
+  @include mixins.mobile {
+    .userName {
+      display: none;
+    }
+  }
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+
+  @include mixins.mobile {
+    width: 32px;
+    height: 32px;
+  }
+}
+
+.userName {
+  color: variables.$primary-blue;
+  font-weight: 500;
+}

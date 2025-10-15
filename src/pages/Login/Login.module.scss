@@ -1,0 +1,232 @@
+@use "../../styles/variables.scss";
+@use "../../styles/mixins.scss" as mixins;
+@use "sass:color";
+
+.loginContainer {
+  min-height: 100vh;
+  display: flex;
+  background-color: variables.$white;
+
+  @include mixins.mobile {
+    flex-direction: column;
+  }
+}
+
+.leftSection {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: variables.$spacing-xl;
+  background-color: variables.$light-gray;
+
+  @include mixins.mobile {
+    padding: variables.$spacing-md;
+    min-height: 40vh;
+  }
+}
+
+.logo {
+  margin-bottom: variables.$spacing-xl;
+
+  img {
+    height: 36px;
+    width: auto;
+  }
+
+  @include mixins.mobile {
+    margin-bottom: variables.$spacing-md;
+
+    img {
+      height: 28px;
+    }
+  }
+}
+
+.illustrationWrapper {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: variables.$spacing-lg;
+
+  @include mixins.mobile {
+    padding: variables.$spacing-sm;
+  }
+}
+
+.illustration {
+  max-width: 600px;
+  width: 100%;
+  height: auto;
+
+  @include mixins.mobile {
+    max-width: 100%;
+  }
+}
+
+.rightSection {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: variables.$spacing-xl;
+
+  @include mixins.mobile {
+    padding: variables.$spacing-md;
+  }
+}
+
+.formWrapper {
+  width: 100%;
+  max-width: 447px;
+}
+
+.heading {
+  font-size: 40px;
+  font-weight: 700;
+  color: variables.$primary-blue;
+  margin-bottom: variables.$spacing-sm;
+  line-height: 1.2;
+
+  @include mixins.mobile {
+    font-size: 32px;
+  }
+}
+
+.subheading {
+  font-size: 20px;
+  font-weight: 400;
+  color: variables.$gray;
+  margin-bottom: variables.$spacing-xl;
+
+  @include mixins.mobile {
+    font-size: 16px;
+    margin-bottom: variables.$spacing-lg;
+  }
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: variables.$spacing-lg;
+}
+
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  gap: variables.$spacing-xs;
+}
+
+.input {
+  width: 100%;
+  padding: 15px 20px;
+  font-size: 14px;
+  color: variables.$gray;
+  border: 2px solid variables.$light-border;
+  border-radius: 5px;
+  outline: none;
+  transition: border-color 0.2s ease;
+
+  &::placeholder {
+    color: #a3a3a3;
+  }
+
+  &:focus {
+    border-color: variables.$teal;
+  }
+
+  &:hover {
+    border-color: color.scale(variables.$light-border, $lightness: -5%);
+  }
+}
+
+.passwordWrapper {
+  position: relative;
+}
+
+.passwordInput {
+  padding-right: 80px;
+}
+
+.showButton {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: variables.$teal;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  padding: 0;
+  transition: opacity 0.2s ease;
+
+  &:hover {
+    opacity: 0.8;
+  }
+
+  &:focus-visible {
+    outline: 2px solid variables.$teal;
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+}
+
+.forgotPassword {
+  font-size: 12px;
+  font-weight: 600;
+  color: variables.$teal;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+  text-align: left;
+  transition: opacity 0.2s ease;
+
+  &:hover {
+    opacity: 0.8;
+  }
+
+  &:focus-visible {
+    outline: 2px solid variables.$teal;
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+}
+
+.submitButton {
+  width: 100%;
+  padding: 15px;
+  background-color: variables.$teal;
+  color: variables.$white;
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+
+  &:hover {
+    background-color: color.scale(variables.$teal, $lightness: -5%);
+  }
+
+  &:active {
+    transform: scale(0.98);
+  }
+
+  &:focus-visible {
+    outline: 2px solid variables.$primary-blue;
+    outline-offset: 2px;
+  }
+
+  &:disabled {
+    background-color: color.scale(variables.$gray, $lightness: 30%);
+    cursor: not-allowed;
+  }
+}

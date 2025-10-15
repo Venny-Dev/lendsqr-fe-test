@@ -1,0 +1,54 @@
+@use "../../../styles/mixins.scss" as mixins;
+
+.tabsContainer {
+  background-color: #ffffff;
+  border-radius: 4px;
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.04);
+  overflow-x: auto;
+}
+
+.tabs {
+  @include mixins.flex-between;
+  gap: 2.5rem;
+  padding: 0 2rem;
+  min-width: max-content;
+
+  @media (max-width: 768px) {
+    gap: 1.5rem;
+    padding: 0 1rem;
+  }
+}
+
+.tab {
+  background: none;
+  border: none;
+  padding: 1.25rem 0;
+  font-size: 1rem;
+  color: #545f7d;
+  cursor: pointer;
+  position: relative;
+  white-space: nowrap;
+  transition: color 0.2s;
+
+  &:hover {
+    color: #39cdcc;
+  }
+
+  &.active {
+    color: #39cdcc;
+
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background-color: #39cdcc;
+    }
+  }
+
+  @media (max-width: 640px) {
+    font-size: 0.875rem;
+  }
+}
