@@ -1,41 +1,46 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import styles from "./UsersTable.module.scss";
 import Pagination from "../../ui/Pagination/Pagination";
-import type { FilterValues } from "../../ui/FilterPanel/FilterPanel";
 import ActionMenu from "../../ui/ActionMenu/ActionMenu";
 import FilterPanel from "../../ui/FilterPanel/FilterPanel";
 import { useNavigate } from "react-router-dom";
-import { mockUsers } from "../../utils/data";
+import type { User } from "../../utils/types";
+import { useChangeUserStatus } from "../../hooks/useUsers";
 
-function UsersTable() {
-  const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage, setItemsPerPage] = useState(100);
+interface UsersTableProps {
+  data: {
+    itemsPerPage: number;
+    setItemsPerPage: (value: number) => void;
+    users: User[];
+    pageCount: number;
+  };
+}
+
+function UsersTable({ data }: UsersTableProps) {
+  const navigate = useNavigate();
+  const { changeStatus } = useChangeUserStatus();
+
   const [activeMenuIndex, setActiveMenuIndex] = useState<number | null>(null);
   const [showFilterPanel, setShowFilterPanel] = useState(false);
-  const navigate = useNavigate();
+  const { itemsPerPage, setItemsPerPage, users, pageCount } = data;
+  const filterButtonRef = useRef<HTMLButtonElement>(null);
 
   const getStatusClass = (status: string) => {
     return styles[status.toLowerCase()];
   };
 
-  const handleViewDetails = (index: number) => {
-    console.log("View details for user:", mockUsers[index]);
-    navigate(`/users/${index + 1}`);
+  const handleViewDetails = (user: User) => {
+    navigate(`/users/${user.id}`);
     setActiveMenuIndex(null);
   };
 
-  const handleBlacklist = (index: number) => {
-    console.log("Blacklist user:", mockUsers[index]);
+  const handleChangeStatus = (newStatus: string, user: User) => {
+    const data: User = {
+      ...user,
+      status: newStatus,
+    };
     setActiveMenuIndex(null);
-  };
-
-  const handleActivate = (index: number) => {
-    console.log("Activate user:", mockUsers[index]);
-    setActiveMenuIndex(null);
-  };
-
-  const handleFilter = (filters: FilterValues) => {
-    console.log("Apply filters:", filters);
+    changeStatus({ id: user.id, data });
   };
 
   return (
@@ -51,15 +56,17 @@ function UsersTable() {
                     <button
                       className={styles.filterButton}
                       onClick={() => setShowFilterPanel(!showFilterPanel)}
+                      ref={filterButtonRef}
                     >
                       <img src="/filter-results-button.png" alt="" />
                     </button>
-                    {showFilterPanel && (
-                      <FilterPanel
-                        onClose={() => setShowFilterPanel(false)}
-                        onFilter={handleFilter}
-                      />
-                    )}
+                    {showFilterPanel &&
+                      filterButtonRef.current && ( // ADD NULL CHECK
+                        <FilterPanel
+                          onClose={() => setShowFilterPanel(false)}
+                          triggerRef={filterButtonRef}
+                        />
+                      )}{" "}
                   </div>
                 </th>
                 <th>
@@ -106,7 +113,7 @@ function UsersTable() {
               </tr>
             </thead>
             <tbody>
-              {mockUsers.map((user, index) => (
+              {users.map((user, index) => (
                 <tr key={index}>
                   <td>{user.organization}</td>
                   <td>{user.username}</td>
@@ -136,9 +143,9 @@ function UsersTable() {
                     {activeMenuIndex === index && (
                       <ActionMenu
                         onClose={() => setActiveMenuIndex(null)}
-                        onViewDetails={() => handleViewDetails(index)}
-                        onBlacklist={() => handleBlacklist(index)}
-                        onActivate={() => handleActivate(index)}
+                        onViewDetails={() => handleViewDetails(user)}
+                        onHandleChangeStatus={handleChangeStatus}
+                        user={user}
                       />
                     )}
                   </td>
@@ -147,14 +154,12 @@ function UsersTable() {
             </tbody>
           </table>
         </div>
-
-        {/* Pagination controls can be added here in the future */}
       </div>
+
       <Pagination
         itemsPerPage={itemsPerPage}
         setItemsPerPage={setItemsPerPage}
-        currentPage={currentPage}
-        setCurrentPage={setCurrentPage}
+        pageCount={pageCount}
       />
     </>
   );

@@ -3,7 +3,7 @@ import styles from "./StatsCard.module.scss";
 interface StatsCardProps {
   icon: string;
   label: string;
-  value: string;
+  value: number | string;
   iconBg: string;
 }
 

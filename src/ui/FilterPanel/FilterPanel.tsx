@@ -1,37 +1,44 @@
 import { useEffect, useRef, useState } from "react";
-
 import styles from "./FilterPanel.module.scss";
+import type { FilterValues } from "../../utils/types";
+import { useSearchParams } from "react-router-dom";
+import { createPortal } from "react-dom";
 
 interface FilterPanelProps {
   onClose: () => void;
-  onFilter: (filters: FilterValues) => void;
+  triggerRef: React.RefObject<HTMLButtonElement | null>;
 }
 
-export interface FilterValues {
-  organization: string;
-  username: string;
-  email: string;
-  date: string;
-  phoneNumber: string;
-  status: string;
-}
-
-function FilterPanel({ onClose, onFilter }: FilterPanelProps) {
+function FilterPanel({ onClose, triggerRef }: FilterPanelProps) {
   const panelRef = useRef<HTMLDivElement>(null);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [position, setPosition] = useState({ top: 0, left: 0 });
   const [filters, setFilters] = useState<FilterValues>({
-    organization: "",
-    username: "",
-    email: "",
-    date: "",
-    phoneNumber: "",
-    status: "",
+    organization: searchParams.get("organization") || "",
+    username: searchParams.get("username") || "",
+    email: searchParams.get("email") || "",
+    date: searchParams.get("date") || "",
+    phoneNumber: searchParams.get("phoneNumber") || "",
+    status: searchParams.get("status") || "",
   });
+
+  useEffect(() => {
+    if (triggerRef.current) {
+      const rect = triggerRef.current.getBoundingClientRect();
+      setPosition({
+        top: rect.bottom + window.scrollY + 8,
+        left: rect.left + window.scrollX,
+      });
+    }
+  }, [triggerRef]);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (
         panelRef.current &&
-        !panelRef.current.contains(event.target as Node)
+        !panelRef.current.contains(event.target as Node) &&
+        triggerRef.current &&
+        !triggerRef.current.contains(event.target as Node)
       ) {
         onClose();
       }
@@ -39,36 +46,66 @@ function FilterPanel({ onClose, onFilter }: FilterPanelProps) {
 
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, [onClose]);
+  }, [onClose, triggerRef]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    onFilter(filters);
+
+    const newParams = new URLSearchParams();
+
+    Object.entries(filters).forEach(([key, value]) => {
+      if (value) {
+        newParams.set(key, value);
+      }
+    });
+
+    newParams.set("page", "1");
+
+    setSearchParams(newParams);
     onClose();
   };
 
   const handleReset = () => {
-    setFilters({
+    const resetFilters = {
       organization: "",
       username: "",
       email: "",
       date: "",
       phoneNumber: "",
       status: "",
-    });
+    };
+
+    setFilters(resetFilters);
+
+    const newParams = new URLSearchParams();
+    newParams.set("page", "1");
+    setSearchParams(newParams);
+    onClose();
   };
 
-  return (
-    <div className={styles.filterPanel} ref={panelRef}>
+  function handleFilterChange(
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
+    field: keyof FilterValues
+  ) {
+    setFilters({ ...filters, [field]: e.target.value });
+  }
+
+  return createPortal(
+    <div
+      className={styles.filterPanel}
+      ref={panelRef}
+      style={{
+        top: `${position.top}px`,
+        left: `${position.left}px`,
+      }}
+    >
       <form onSubmit={handleSubmit}>
         <div className={styles.formGroup}>
           <label htmlFor="organization">Organization</label>
           <select
             id="organization"
             value={filters.organization}
-            onChange={(e) =>
-              setFilters({ ...filters, organization: e.target.value })
-            }
+            onChange={(e) => handleFilterChange(e, "organization")}
           >
             <option value="">Select</option>
             <option value="lendsqr">Lendsqr</option>
@@ -84,9 +121,7 @@ function FilterPanel({ onClose, onFilter }: FilterPanelProps) {
             id="username"
             placeholder="User"
             value={filters.username}
-            onChange={(e) =>
-              setFilters({ ...filters, username: e.target.value })
-            }
+            onChange={(e) => handleFilterChange(e, "username")}
           />
         </div>
 
@@ -97,7 +132,7 @@ function FilterPanel({ onClose, onFilter }: FilterPanelProps) {
             id="email"
             placeholder="Email"
             value={filters.email}
-            onChange={(e) => setFilters({ ...filters, email: e.target.value })}
+            onChange={(e) => handleFilterChange(e, "email")}
           />
         </div>
 
@@ -108,7 +143,7 @@ function FilterPanel({ onClose, onFilter }: FilterPanelProps) {
             id="date"
             placeholder="Date"
             value={filters.date}
-            onChange={(e) => setFilters({ ...filters, date: e.target.value })}
+            onChange={(e) => handleFilterChange(e, "date")}
           />
         </div>
 
@@ -119,9 +154,7 @@ function FilterPanel({ onClose, onFilter }: FilterPanelProps) {
             id="phoneNumber"
             placeholder="Phone Number"
             value={filters.phoneNumber}
-            onChange={(e) =>
-              setFilters({ ...filters, phoneNumber: e.target.value })
-            }
+            onChange={(e) => handleFilterChange(e, "phoneNumber")}
           />
         </div>
 
@@ -130,7 +163,7 @@ function FilterPanel({ onClose, onFilter }: FilterPanelProps) {
           <select
             id="status"
             value={filters.status}
-            onChange={(e) => setFilters({ ...filters, status: e.target.value })}
+            onChange={(e) => handleFilterChange(e, "status")}
           >
             <option value="">Select</option>
             <option value="active">Active</option>
@@ -153,7 +186,8 @@ function FilterPanel({ onClose, onFilter }: FilterPanelProps) {
           </button>
         </div>
       </form>
-    </div>
+    </div>,
+    document.body
   );
 }
 

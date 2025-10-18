@@ -4,8 +4,8 @@
 
 .filterPanel {
   position: absolute;
-  top: 100%;
-  left: -15px;
+  // top: 100%;
+  // left: -15px;
   //   margin-top: 8px;
   background: variables.$white;
   border: 1px solid variables.$light-border;
@@ -13,8 +13,10 @@
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
   padding: 20px;
   min-width: 270px;
-  z-index: 1000;
+  z-index: 9999;
   animation: slideDown 0.2s ease;
+  max-height: 90vh; // Prevent overflow on small screens
+  overflow-y: auto;
 
   @keyframes slideDown {
     from {
@@ -28,9 +30,10 @@
   }
 
   @include mixins.mobile {
-    left: 0;
-    right: 0;
-    min-width: 250px;
+    left: 8px !important;
+    right: 8px !important;
+    min-width: auto;
+    max-width: calc(100vw - 16px);
   }
 }
 

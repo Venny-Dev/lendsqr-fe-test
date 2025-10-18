@@ -9,9 +9,6 @@ import {
   FileTextIcon,
   HandshakeIcon,
   HomeIcon,
-  // ChevronDownIcon,
-  // HomeIcon,
-  // LogOutIcon,
   MessageSquareIcon,
   PercentIcon,
   PiggyBankIcon,
@@ -22,7 +19,6 @@ import {
   UserCogIcon,
   UserXIcon,
   UsersIcon,
-  //   type LucideIcon,
 } from "lucide-react";
 
 export const mockUsers: User[] = [
@@ -33,6 +29,7 @@ export const mockUsers: User[] = [
     phoneNumber: "08078903721",
     dateJoined: "May 15, 2020 10:00 AM",
     status: "Inactive",
+    id: "1",
   },
   {
     organization: "Irorun",
@@ -41,6 +38,7 @@ export const mockUsers: User[] = [
     phoneNumber: "08160780928",
     dateJoined: "Apr 30, 2020 10:00 AM",
     status: "Pending",
+    id: "2",
   },
   {
     organization: "Lendstar",
@@ -49,6 +47,7 @@ export const mockUsers: User[] = [
     phoneNumber: "07060780922",
     dateJoined: "Apr 30, 2020 10:00 AM",
     status: "Blacklisted",
+    id: "3",
   },
   {
     organization: "Lendsqr",
@@ -57,6 +56,7 @@ export const mockUsers: User[] = [
     phoneNumber: "07003309226",
     dateJoined: "Apr 10, 2020 10:00 AM",
     status: "Pending",
+    id: "4",
   },
   {
     organization: "Lendstar",
@@ -65,6 +65,7 @@ export const mockUsers: User[] = [
     phoneNumber: "07060780922",
     dateJoined: "Apr 30, 2020 10:00 AM",
     status: "Active",
+    id: "5",
   },
   {
     organization: "Lendsqr",
@@ -73,6 +74,7 @@ export const mockUsers: User[] = [
     phoneNumber: "08060780900",
     dateJoined: "Apr 10, 2020 10:00 AM",
     status: "Active",
+    id: "6",
   },
   {
     organization: "Lendstar",
@@ -81,6 +83,7 @@ export const mockUsers: User[] = [
     phoneNumber: "07060780922",
     dateJoined: "Apr 30, 2020 10:00 AM",
     status: "Blacklisted",
+    id: "7",
   },
   {
     organization: "Lendsqr",
@@ -89,6 +92,7 @@ export const mockUsers: User[] = [
     phoneNumber: "08060780900",
     dateJoined: "Apr 10, 2020 10:00 AM",
     status: "Inactive",
+    id: "8",
   },
   {
     organization: "Lendstar",
@@ -97,6 +101,7 @@ export const mockUsers: User[] = [
     phoneNumber: "07060780922",
     dateJoined: "Apr 30, 2020 10:00 AM",
     status: "Inactive",
+    id: "9",
   },
 ];
 

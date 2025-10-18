@@ -1,16 +1,13 @@
+import type { UserProfileType } from "../../../utils/types";
 import styles from "./UserProfileCard.module.scss";
 
 interface UserProfileCardProps {
-  userData: {
-    name: string;
-    id: string;
-    rating: number;
-    tier: string;
-    balance: string;
-    bankAccount: string;
-  };
+  userData: UserProfileType;
 }
 
+// interface UserProfileCardProps {
+//   userData: UserDetailsType;
+// }
 const renderStars = (rating: number) => {
   const stars = [];
   for (let i = 1; i <= 3; i++) {

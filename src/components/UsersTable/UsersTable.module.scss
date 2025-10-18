@@ -9,6 +9,7 @@
 
 .tableWrapper {
   overflow-x: auto;
+  overflow-y: visible;
 }
 
 .headerContent {
@@ -70,6 +71,11 @@
       padding: variables.$spacing-md;
       font-size: 14px;
       color: variables.$gray;
+
+      max-width: 200px;
+      word-wrap: break-word;
+      overflow-wrap: break-word;
+      white-space: normal;
 
       @include mixins.mobile {
         padding: variables.$spacing-sm;

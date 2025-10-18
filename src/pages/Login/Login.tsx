@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router";
 import styles from "./Login.module.scss";
 import { useState, type FormEvent } from "react";
 
@@ -6,17 +7,22 @@ function Login() {
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsLoading(true);
 
     // Simulate login
-    console.log(" Login attempt:", { email, password: "***" });
+    // console.log(" Login attempt:", { email, password: "***" });
 
     setTimeout(() => {
       setIsLoading(false);
+      localStorage.setItem("email", email);
+      navigate("/");
     }, 1000);
+
+    // console.log(email, password);
   };
 
   const handleForgotPassword = () => {

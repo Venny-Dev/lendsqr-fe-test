@@ -3,11 +3,16 @@ import AppLayout from "../ui/AppLayout/AppLayout";
 import UsersOverview from "../pages/UsersOverview/UsersOverview";
 import UserDetails from "../pages/UserDetails/UserDetails";
 import Login from "../pages/Login/Login";
+import ProtectedRoute from "../ui/ProtectedRoute";
 
 const routeConfig: RouteObject[] = [
   {
     path: "/",
-    element: <AppLayout />,
+    element: (
+      <ProtectedRoute>
+        <AppLayout />
+      </ProtectedRoute>
+    ),
     children: [
       {
         index: true,

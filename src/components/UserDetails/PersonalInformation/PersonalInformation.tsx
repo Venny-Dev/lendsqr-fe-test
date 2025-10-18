@@ -1,16 +1,8 @@
 import styles from "./PersonalInformation.module.scss";
+import type { UserDetails } from "../../../utils/types";
 
 interface PersonalInformationProps {
-  data: {
-    fullName: string;
-    phoneNumber: string;
-    email: string;
-    bvn: string;
-    gender: string;
-    maritalStatus: string;
-    children: string;
-    typeOfResidence: string;
-  };
+  data: UserDetails["personalInfo"];
 }
 
 function PersonalInformation({ data }: PersonalInformationProps) {
