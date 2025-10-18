@@ -134,11 +134,7 @@ function UsersTable({ data }: UsersTableProps) {
                       className={styles.menuButton}
                       onClick={() => setActiveMenuIndex(index)}
                     >
-                      <svg width="4" height="16" viewBox="0 0 4 16" fill="none">
-                        <circle cx="2" cy="2" r="2" fill="#545F7D" />
-                        <circle cx="2" cy="8" r="2" fill="#545F7D" />
-                        <circle cx="2" cy="14" r="2" fill="#545F7D" />
-                      </svg>
+                      <img src="/action-icon.png" alt="menu" />
                     </button>
                     {activeMenuIndex === index && (
                       <ActionMenu

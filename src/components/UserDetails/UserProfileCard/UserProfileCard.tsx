@@ -5,9 +5,6 @@ interface UserProfileCardProps {
   userData: UserProfileType;
 }
 
-// interface UserProfileCardProps {
-//   userData: UserDetailsType;
-// }
 const renderStars = (rating: number) => {
   const stars = [];
   for (let i = 1; i <= 3; i++) {
@@ -39,22 +36,7 @@ function UserProfileCard({ userData }: UserProfileCardProps) {
     <div className={styles.profileCard}>
       <div className={styles.userInfo}>
         <div className={styles.avatar}>
-          <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
-            <path
-              d="M20 20C24.1421 20 27.5 16.6421 27.5 12.5C27.5 8.35786 24.1421 5 20 5C15.8579 5 12.5 8.35786 12.5 12.5C12.5 16.6421 15.8579 20 20 20Z"
-              stroke="#213F7D"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-            <path
-              d="M34.9999 35C34.9999 28.0964 28.2842 22.5 19.9999 22.5C11.7156 22.5 4.99988 28.0964 4.99988 35"
-              stroke="#213F7D"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
+          <img src="/avatar-pfp.png" alt="avatar" width={100} height={100} />
         </div>
         <div className={styles.details}>
           <h2 className={styles.name}>{userData.name}</h2>

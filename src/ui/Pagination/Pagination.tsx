@@ -1,6 +1,7 @@
 import { useSearchParams } from "react-router";
 import styles from "./Pagination.module.scss";
 import { calculatePaginationButtons } from "../../utils/helpers";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 interface PaginationProps {
   itemsPerPage: number;
@@ -66,9 +67,7 @@ function Pagination({
           disabled={currentPage === 1}
           onClick={prevPage}
         >
-          <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-            <path d="M9 2L4 7L9 12" stroke="currentColor" strokeWidth="2" />
-          </svg>
+          <ChevronLeft style={{ color: "#213F7D" }} />
         </button>
 
         {paginationButtons.map((page) => (
@@ -90,9 +89,7 @@ function Pagination({
         ))}
 
         <button className={styles.pageButton} onClick={nextPage}>
-          <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-            <path d="M5 2L10 7L5 12" stroke="currentColor" strokeWidth="2" />
-          </svg>
+          <ChevronRight />
         </button>
       </div>
     </div>

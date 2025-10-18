@@ -8,10 +8,7 @@ export interface User {
   phoneNumber: string;
   dateJoined: string;
   status: string;
-  // status: "Active" | "Inactive" | "Pending" | "Blacklisted";
 }
-
-// ("{ status: string; id: string; organization: string; username: string; email: string; phoneNumber: string; dateJoined: string; }");
 
 interface MenuItem {
   icon: LucideIcon;

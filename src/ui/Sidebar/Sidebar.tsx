@@ -2,6 +2,7 @@ import { useState } from "react";
 
 import styles from "./Sidebar.module.scss";
 import { menuSections } from "../../utils/data";
+import { ChevronDown } from "lucide-react";
 
 function Sidebar() {
   const [isCollapsed] = useState(false);
@@ -25,24 +26,10 @@ function Sidebar() {
                   }`}
                 >
                   <p className={styles.icon}>
-                    <item.icon size={20} /> {/* Render as component */}
+                    <item.icon size={20} />
                   </p>
                   <span className={styles.label}>{item.label}</span>
-                  {item.label === "Switch Organization" && (
-                    <svg
-                      width="12"
-                      height="8"
-                      viewBox="0 0 12 8"
-                      fill="none"
-                      className={styles.dropdown}
-                    >
-                      <path
-                        d="M1 1L6 6L11 1"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                      />
-                    </svg>
-                  )}
+                  {item.label === "Switch Organization" && <ChevronDown />}
                 </li>
               ))}
             </ul>
