@@ -90,7 +90,7 @@ export function useUsers() {
         const userDate = new Date(user.dateJoined);
         const filterDate = new Date(filters.date!);
 
-        // Compare dates (ignore time)
+        // Compare dates
         return (
           userDate.getFullYear() === filterDate.getFullYear() &&
           userDate.getMonth() === filterDate.getMonth() &&

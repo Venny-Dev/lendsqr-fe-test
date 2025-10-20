@@ -4,6 +4,7 @@ import { Bell, Search, ChevronDown } from "lucide-react";
 
 function Header() {
   const [searchQuery, setSearchQuery] = useState("");
+  const email = localStorage.getItem("email");
 
   return (
     <header className={styles.header}>
@@ -45,7 +46,7 @@ function Header() {
         </button>
         <div className={styles.userProfile}>
           <img src="/avatar.png" alt="User" className={styles.avatar} />
-          <span className={styles.userName}>Adedeji</span>
+          <span className={styles.userName}>{email}</span>
           <ChevronDown style={{ color: "#213F7D" }} />
         </div>
       </div>

@@ -1,4 +1,4 @@
-import { useSearchParams } from "react-router";
+import { useSearchParams } from "react-router-dom";
 import { PAGE_SIZE } from "../utils/constants";
 
 function usePaginateData(filteredData: any) {
