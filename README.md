@@ -245,7 +245,7 @@ npm run test -- --watch
 
 ## 🚀 Deployment
 
-- The application is deployed on [Railway](https://railway.app/)
+- The application is deployed on [Vercel](https://modestus-victor-lendsqr-fe-test.vercel.app)
 
 ## 👤 Author
 
