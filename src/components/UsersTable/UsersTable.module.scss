@@ -10,6 +10,8 @@
 .tableWrapper {
   overflow-x: auto;
   overflow-y: visible;
+  padding: 30px 30px 0px 30px;
+  box-shadow: 3px 5px 20px 0 rgba(0, 0, 0, 0.04);
 }
 
 .headerContent {
@@ -49,7 +51,7 @@
     }
 
     th {
-      padding: variables.$spacing-md;
+      padding-bottom: 27px;
       text-align: left;
       font-size: 12px;
       font-weight: 600;
@@ -75,11 +77,13 @@
     }
 
     td {
-      padding: variables.$spacing-md;
+      padding-top: 15px;
+      padding-bottom: 16px;
       font-size: 14px;
       color: variables.$gray;
+      padding-right: 30px;
 
-      max-width: 145px;
+      max-width: 130px;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
