@@ -13,16 +13,25 @@ export function calculatePaginationButtons(
 
   if (currentPage === 1) {
     // On the first page: 1, 2, ..., lastPage
-    paginationButtons.push(1, 2, "...", pageCount);
+    paginationButtons.push(1, 2, "...", pageCount - 1, pageCount);
   } else if (currentPage === 2) {
     // On the second page: 2, 3, ..., lastPage
-    paginationButtons.push(2, 3, "...", pageCount);
+    paginationButtons.push(2, 3, "...", pageCount - 1, pageCount);
   } else if (currentPage >= pageCount - 1) {
     // Near the last page: ..., pageCount-2, pageCount-1, lastPage
     paginationButtons.push("...", pageCount - 2, pageCount - 1, pageCount);
   } else {
     // Middle pages: ..., currentPage, currentPage+1, ..., lastPage
-    paginationButtons.push("...", currentPage, currentPage + 1, pageCount);
+    paginationButtons.push(
+      "...",
+      currentPage,
+      currentPage + 1,
+      currentPage + 2,
+      "...",
+      pageCount - 2,
+      pageCount - 1,
+      pageCount
+    );
   }
 
   return paginationButtons;

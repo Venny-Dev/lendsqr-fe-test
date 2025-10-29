@@ -4,15 +4,12 @@
 
 .filterPanel {
   position: absolute;
-  // top: 100%;
-  // left: -15px;
-  //   margin-top: 8px;
   background: variables.$white;
   border: 1px solid variables.$light-border;
   border-radius: variables.$border-radius;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
   padding: 20px;
-  min-width: 270px;
+  max-width: 270px;
   z-index: 9999;
   animation: slideDown 0.2s ease;
   max-height: 90vh; // Prevent overflow on small screens

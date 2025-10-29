@@ -26,7 +26,8 @@ function Sidebar() {
                   }`}
                 >
                   <p className={styles.icon}>
-                    <item.icon size={20} />
+                    {/* <item.icon size={20} /> */}
+                    {item.icon && <img src={item.icon} alt="" />}
                   </p>
                   <span className={styles.label}>{item.label}</span>
                   {item.label === "Switch Organization" && <ChevronDown />}

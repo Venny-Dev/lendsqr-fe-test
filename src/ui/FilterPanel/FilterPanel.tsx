@@ -27,7 +27,7 @@ function FilterPanel({ onClose, triggerRef }: FilterPanelProps) {
       const rect = triggerRef.current.getBoundingClientRect();
       setPosition({
         top: rect.bottom + window.scrollY + 8,
-        left: rect.left + window.scrollX,
+        left: rect.left + window.scrollX - 110,
       });
     }
   }, [triggerRef]);

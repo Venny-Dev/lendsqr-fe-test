@@ -15,14 +15,14 @@ import SkelentonLoader from "../../ui/SkelentonLoader";
 function UserDetails() {
   const { id } = useParams<{ id: string }>();
   type TabType =
-    | "general"
+    | "generaldetails"
     | "documents"
     | "bank"
     | "loans"
     | "savings"
     | "apps";
 
-  const [activeTab, setActiveTab] = useState<TabType>("general");
+  const [activeTab, setActiveTab] = useState<TabType>("generaldetails");
   const { user, isLoading } = useUser(id!);
   const userData = user as IUserDetails | undefined;
 

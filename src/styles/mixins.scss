@@ -20,9 +20,9 @@
 
 @mixin card {
   background: $white;
-  border: 1px solid $light-border;
+  border: 1px solid rgba(33, 63, 125, 0.06);
   border-radius: $border-radius;
-  padding: $spacing-md;
+  padding: 20px 30px;
 }
 
 @mixin mobile {

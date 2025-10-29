@@ -4,7 +4,7 @@
 .tableContainer {
   @include mixins.card;
   padding: 0;
-  margin-top: variables.$spacing-md;
+  margin-top: 40px;
 }
 
 .tableWrapper {
@@ -17,6 +17,13 @@
   align-items: center;
   gap: 5px;
   position: relative;
+  color: #545f7d;
+  font-family: "Work Sans";
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  text-transform: uppercase;
 }
 
 .filterButton {
@@ -73,9 +80,9 @@
       color: variables.$gray;
 
       max-width: 200px;
-      word-wrap: break-word;
-      overflow-wrap: break-word;
-      white-space: normal;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
 
       @include mixins.mobile {
         padding: variables.$spacing-sm;

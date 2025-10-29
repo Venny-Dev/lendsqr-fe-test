@@ -43,11 +43,13 @@ function Pagination({
       return prev;
     });
   }
+  const totalItems = itemsPerPage ? itemsPerPage * pageCount : pageCount * 10;
+  console.log(totalItems);
 
   return (
     <div className={styles.pagination}>
       <div className={styles.paginationLeft}>
-        <span>Per page</span>
+        <span>Showing</span>
         <select
           value={itemsPerPage}
           onChange={handleItemsPerpage}
@@ -58,6 +60,7 @@ function Pagination({
           <option value={50}>50</option>
           <option value={100}>100</option>
         </select>
+        <span>out of {totalItems}</span>
         {/* <span>out of {pageCount}</span> */}
       </div>
 

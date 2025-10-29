@@ -40,18 +40,16 @@ function UserProfileCard({ userData }: UserProfileCardProps) {
         </div>
         <div className={styles.details}>
           <h2 className={styles.name}>{userData.name}</h2>
-          <p className={styles.userId}>{userData.id}</p>
+          <p className={styles.userId}>{userData.userId}</p>
         </div>
       </div>
 
-      <div className={styles.divider}></div>
 
       <div className={styles.tierInfo}>
-        <p className={styles.label}>{userData.tier}</p>
+        <p className={styles.label}>User's tier</p>
         <div className={styles.stars}>{renderStars(userData.rating)}</div>
       </div>
 
-      <div className={styles.divider}></div>
 
       <div className={styles.bankInfo}>
         <h3 className={styles.balance}>{userData.balance}</h3>

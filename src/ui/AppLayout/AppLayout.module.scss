@@ -9,7 +9,7 @@
 .main {
   margin-left: variables.$sidebar-width;
   margin-top: variables.$header-height;
-  padding: variables.$spacing-xl;
+  padding: 60px;
 
   @include mixins.tablet {
     margin-left: 200px;

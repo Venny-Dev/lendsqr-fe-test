@@ -1,4 +1,4 @@
-import type { LucideIcon } from "lucide-react";
+// import type { LucideIcon } from "lucide-react";
 
 export interface User {
   id: string;
@@ -11,7 +11,7 @@ export interface User {
 }
 
 interface MenuItem {
-  icon: LucideIcon;
+  icon: string;
   label: string;
   active?: boolean;
 }
@@ -37,6 +37,7 @@ export interface UserProfileType {
   tier: string;
   balance: string;
   bankAccount: string;
+  userId: string;
 }
 export interface UserDetails {
   name: string;
@@ -45,6 +46,7 @@ export interface UserDetails {
   tier: string;
   balance: string;
   bankAccount: string;
+  userId: string;
   personalInfo: {
     fullName: string;
     phoneNumber: string;

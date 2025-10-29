@@ -1,25 +1,4 @@
 import type { MenuSection, User } from "./types";
-import {
-  BarChart3Icon,
-  BriefcaseIcon,
-  Building2Icon,
-  ClipboardListIcon,
-  CoinsIcon,
-  CreditCardIcon,
-  FileTextIcon,
-  HandshakeIcon,
-  HomeIcon,
-  MessageSquareIcon,
-  PercentIcon,
-  PiggyBankIcon,
-  ScrollIcon,
-  SlidersHorizontalIcon,
-  StarIcon,
-  UserCheckIcon,
-  UserCogIcon,
-  UserXIcon,
-  UsersIcon,
-} from "lucide-react";
 
 export const mockUsers: User[] = [
   {
@@ -108,44 +87,60 @@ export const mockUsers: User[] = [
 export const menuSections: MenuSection[] = [
   {
     items: [
-      { icon: Building2Icon, label: "Switch Organization" },
-      { icon: HomeIcon, label: "Dashboard" },
+      { icon: "/briefcase 1.svg", label: "Switch Organization" },
+      { icon: "/home 1.svg", label: "Dashboard" },
     ],
   },
   {
     title: "CUSTOMERS",
     items: [
-      { icon: UsersIcon, label: "Users", active: true },
-      { icon: UsersIcon, label: "Guarantors", active: false },
-      { icon: FileTextIcon, label: "Loans", active: false },
-      { icon: HandshakeIcon, label: "Decision Models", active: false },
-      { icon: PiggyBankIcon, label: "Savings", active: false },
-      { icon: FileTextIcon, label: "Loan Requests", active: false },
-      { icon: UserCheckIcon, label: "Whitelist", active: false },
-      { icon: UserXIcon, label: "Karma", active: false },
+      { icon: "/user-friends 1.svg", label: "Users", active: true },
+      { icon: "/users 1.svg", label: "Guarantors", active: false },
+      { icon: "/sack 1.svg", label: "Loans", active: false },
+      {
+        icon: "/handshake-regular 1.svg",
+        label: "Decision Models",
+        active: false,
+      },
+      { icon: "/piggy-bank 1.svg", label: "Savings", active: false },
+      { icon: "/hand-holding 1.svg", label: "Loan Requests", active: false },
+      { icon: "/user-check 1.svg", label: "Whitelist", active: false },
+      { icon: "/user-times 1.svg", label: "Karma", active: false },
     ],
   },
   {
     title: "BUSINESSES",
     items: [
-      { icon: BriefcaseIcon, label: "Organization", active: false },
-      { icon: FileTextIcon, label: "Loan Products", active: false },
-      { icon: Building2Icon, label: "Savings Products", active: false },
-      { icon: CoinsIcon, label: "Fees and Charges", active: false },
-      { icon: CreditCardIcon, label: "Transactions", active: false },
-      { icon: StarIcon, label: "Services", active: false },
-      { icon: UserCogIcon, label: "Service Account", active: false },
-      { icon: ScrollIcon, label: "Settlements", active: false },
-      { icon: BarChart3Icon, label: "Reports", active: false },
+      { icon: "/briefcase 1.svg", label: "Organization", active: false },
+      { icon: "/hand-holding 1.svg", label: "Loan Products", active: false },
+      {
+        icon: "/np_bank_148501_000000 1.svg",
+        label: "Savings Products",
+        active: false,
+      },
+      { icon: "/coins-solid 1.svg", label: "Fees and Charges", active: false },
+      { icon: "/icon.svg", label: "Transactions", active: false },
+      { icon: "/galaxy 1.svg", label: "Services", active: false },
+      { icon: "/user-cog 1.svg", label: "Service Account", active: false },
+      { icon: "/scroll 1.svg", label: "Settlements", active: false },
+      { icon: "/chart-bar 2.svg", label: "Reports", active: false },
     ],
   },
   {
     title: "SETTINGS",
     items: [
-      { icon: SlidersHorizontalIcon, label: "Preferences", active: false },
-      { icon: PercentIcon, label: "Fees and Pricing", active: false },
-      { icon: ClipboardListIcon, label: "Audit Logs", active: false },
-      { icon: MessageSquareIcon, label: "Systems Messages", active: false },
+      { icon: "/sliders-h 1.svg", label: "Preferences", active: false },
+      {
+        icon: "/badge-percent 1.svg",
+        label: "Fees and Pricing",
+        active: false,
+      },
+      { icon: "/clipboard-list 1.svg", label: "Audit Logs", active: false },
+      // {
+      //   icon: "/message-square 1.svg",
+      //   label: "Systems Messages",
+      //   active: false,
+      // },
     ],
   },
 ];

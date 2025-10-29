@@ -7,6 +7,7 @@
   flex-direction: column;
   gap: 12px;
   min-width: 200px;
+  box-shadow: 3px 5px 20px 0 rgba(0, 0, 0, 0.04);
 
   @include mixins.mobile {
     min-width: 150px;
@@ -26,11 +27,15 @@
 }
 
 .label {
-  font-size: 12px;
-  font-weight: 500;
-  color: variables.$gray;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
+  // letter-spacing: 0.5px;
+  color: #545f7d;
+  font-family: "Work Sans";
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  text-transform: uppercase;
 }
 
 .value {

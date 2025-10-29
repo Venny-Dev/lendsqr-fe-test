@@ -15,6 +15,8 @@ function UserTabs({ activeTab, setActiveTab }: UserTabsProps) {
     "App and System",
   ];
 
+  console.log(activeTab);
+
   return (
     <div className={styles.tabsContainer}>
       <div className={styles.tabs}>
