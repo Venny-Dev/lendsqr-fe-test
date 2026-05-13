@@ -1,5 +1,12 @@
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
+if (!API_BASE_URL) {
+  throw new Error(
+    '[apiClient] VITE_API_BASE_URL is not defined. ' +
+    'Set it in frontend/.env before building.'
+  );
+}
+
 interface ApiResponse<T = any> {
   data: T;
   message: string;

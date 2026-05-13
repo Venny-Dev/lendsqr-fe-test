@@ -1,8 +1,9 @@
 import { useNavigate, useParams } from "react-router";
 import styles from "./UserHeader.module.scss";
-import { useQueryClient } from "@tanstack/react-query";
 import type { User } from "../../../utils/types";
 import { useChangeUserStatus } from "../../../hooks/useUsers";
+import { getUsers } from "../../../services/apiEndpoint";
+import { useQuery } from "@tanstack/react-query";
 
 function UserHeader() {
   const navigate = useNavigate();
@@ -10,10 +11,13 @@ function UserHeader() {
 
   const { changeStatus } = useChangeUserStatus();
 
-  const queryClient = useQueryClient();
-  const cachedUser = queryClient
-    .getQueryData<User[]>(["users"])
-    ?.find((user: User) => user.id === id);
+  const { data: usersResponse } = useQuery({
+    queryKey: ["users"],
+    queryFn: () => getUsers(),
+  });
+  const cachedUser = usersResponse?.data?.find(
+    (user: User) => String(user.id) === id
+  );
 
   const handleChangeStatus = (newStatus: string, user: User) => {
     if (!user) return;

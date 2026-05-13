@@ -63,6 +63,8 @@ A modern, responsive admin dashboard for managing user data, built as an assessm
 
 ## 🚀 Getting Started
 
+This project is split into two packages: `frontend` (React app) and `backend` (Express API). Each has its own dependencies and scripts.
+
 ### 1. Clone the Repository
 
 ```bash
@@ -72,95 +74,158 @@ cd lendsqr-fe-test
 
 ### 2. Install Dependencies
 
+Install dependencies for both packages:
+
 ```bash
+# Frontend
+cd frontend
+npm install
+
+# Backend
+cd ../backend
 npm install
 ```
 
-### 3. Generate Mock Data (Optional)
+### 3. Seed the Database (Optional)
 
-If you want to use local mock data:
+From the `backend` directory, run the sync script to populate `db.json` with mock users:
 
 ```bash
-node generate-mock-data.cjs
+npm run sync-db
 ```
 
-This will create a `db.json` file with 500 mock users.
-
-### 4. Run the Development Server
+### 4. Start the Backend
 
 ```bash
+# From the backend directory
+npm run dev
+```
+
+The API will be available at `http://localhost:3001`
+
+### 5. Start the Frontend
+
+```bash
+# From the frontend directory
 npm run dev
 ```
 
 The application will be available at `http://localhost:5173`
 
-This will start the mock API at `http://localhost:3001`
-
 ## 📜 Available Scripts
+
+### Frontend (`/frontend`)
 
 | Script             | Description                             |
 | ------------------ | --------------------------------------- |
-| `npm run dev`      | Start the development server            |
+| `npm run dev`      | Start the Vite development server       |
 | `npm run build`    | Build the production bundle             |
 | `npm run preview`  | Preview the production build            |
 | `npm run lint`     | Run ESLint to check code quality        |
 | `npm run mock-api` | Start JSON Server for local development |
-| `npm run test`     | Run unit tests with Vitest              |
+| `npm run test`     | Run unit tests with Vitest (watch mode) |
 | `npm run test:ui`  | Run tests with Vitest UI                |
+
+### Backend (`/backend`)
+
+| Script           | Description                              |
+| ---------------- | ---------------------------------------- |
+| `npm run dev`    | Start the Express server with hot reload |
+| `npm run build`  | Compile TypeScript to `dist/`            |
+| `npm run start`  | Run the compiled production server       |
+| `npm run test`   | Run backend tests with Vitest            |
+| `npm run sync-db`| Seed `db.json` with mock data            |
 
 ## 📁 Project Structure
 
 ```
 lendsqr/
-├── public/                  # Static assets
-│   ├── logo.svg
-│   ├── illustration.svg
-│   └── *.png               # Icons and images
-├── src/
-│   ├── components/         # Reusable components
-│   │   ├── UserDetails/   # User details page components
-│   │   └── UsersTable/    # Users table component
-│   ├── hooks/             # Custom React hooks
-│   │   ├── useUsers.tsx   # Users data management hook
-│   │   ├── usePaginateData.tsx # Pagination hook
-│   │   └── __tests__/     # Hook tests
-│   │       └── useUsers.test.tsx # useUsers hook tests
-│   ├── pages/             # Page components
-│   │   ├── Login/         # Login page
-│   │   ├── UsersOverview/ # Users dashboard
-│   │   └── UserDetails/   # User details page
-│   ├── routes/            # Routing configuration
-│   │   ├── AppRoutes.tsx
-│   │   └── routesConfig.tsx
-│   ├── services/          # API services
-│   │   ├── apiClient.ts   # HTTP client
-│   │   └── apiEndpoint.ts # API endpoints
-│   ├── styles/            # Global styles
-│   │   ├── globals.scss   # Global styles
-│   │   ├── mixins.scss    # SCSS mixins
-│   │   └── variables.scss # SCSS variables
-│   ├── ui/                # UI components
-│   │   ├── ActionMenu/    # Action menu component
-│   │   ├── Header/        # Header component
-│   │   ├── Sidebar/       # Sidebar navigation
-│   │   ├── Pagination/    # Pagination component
-│   │   └── ProtectedRoute.tsx # Route protection
-│   ├── utils/             # Utility functions
-│   │   ├── constants.ts   # App constants
-│   │   ├── data.ts        # Static data
-│   │   ├── helpers.ts     # Helper functions
-│   │   ├── types.ts       # TypeScript types
-│   │   └── __tests__/     # Utility tests
-│   │       └── helpers.test.ts # Helper function tests
-│   ├── App.tsx            # Root component
-│   └── main.tsx           # Entry point
-├── .env                   # Environment variables
-├── generate-mock-data.cjs # Mock data generator
-├── package.json           # Dependencies and scripts
-├── tsconfig.json          # TypeScript configuration
-├── vite.config.ts         # Vite configuration
-├── vitest.config.ts       # Vitest configuration
-└── README.md              # This file
+├── frontend/                        # React application
+│   ├── public/                      # Static assets (SVGs, PNGs, icons)
+│   ├── src/
+│   │   ├── components/              # Feature-specific components
+│   │   │   ├── UserDetails/         # User detail section components
+│   │   │   │   ├── EducationEmployment/
+│   │   │   │   ├── Guarantor/
+│   │   │   │   ├── PersonalInformation/
+│   │   │   │   ├── Socials/
+│   │   │   │   ├── UserHeader/
+│   │   │   │   ├── UserProfileCard/
+│   │   │   │   └── UserTabs/
+│   │   │   └── UsersTable/          # Users table component
+│   │   │       ├── UsersTable.tsx
+│   │   │       └── UsersTable.module.scss
+│   │   ├── hooks/                   # Custom React hooks
+│   │   │   ├── useUsers.tsx         # Users data fetching & filtering
+│   │   │   ├── usePaginateData.tsx  # Pagination logic
+│   │   │   └── __tests__/
+│   │   │       └── useUsers.test.tsx
+│   │   ├── pages/                   # Route-level page components
+│   │   │   ├── Login/
+│   │   │   ├── UsersOverview/
+│   │   │   │   ├── UsersOverview.tsx
+│   │   │   │   └── UsersOverview.module.scss
+│   │   │   └── UserDetails/
+│   │   ├── routes/                  # Routing configuration
+│   │   │   ├── AppRoutes.tsx
+│   │   │   └── routesConfig.tsx
+│   │   ├── services/                # API layer
+│   │   │   ├── apiClient.ts         # Axios/fetch HTTP client
+│   │   │   └── apiEndpoint.ts       # API endpoint definitions
+│   │   ├── styles/                  # Global SCSS
+│   │   │   ├── globals.scss
+│   │   │   ├── mixins.scss
+│   │   │   └── variables.scss
+│   │   ├── test/                    # Test setup
+│   │   │   └── setup.ts
+│   │   ├── ui/                      # Shared/generic UI components
+│   │   │   ├── ActionMenu/
+│   │   │   │   ├── ActionMenu.tsx
+│   │   │   │   └── ActionMenu.module.scss
+│   │   │   ├── AppLayout/
+│   │   │   │   ├── AppLayout.tsx
+│   │   │   │   └── AppLayout.module.scss
+│   │   │   ├── FilterPanel/
+│   │   │   │   ├── FilterPanel.tsx
+│   │   │   │   └── FilterPanel.module.scss
+│   │   │   ├── Header/
+│   │   │   ├── Pagination/
+│   │   │   ├── Sidebar/
+│   │   │   ├── StatsCard/
+│   │   │   │   ├── StatsCard.tsx
+│   │   │   │   └── StatsCard.module.scss
+│   │   │   ├── ProtectedRoute.tsx
+│   │   │   └── SkelentonLoader.tsx
+│   │   ├── utils/                   # Utility functions & types
+│   │   │   ├── constants.ts
+│   │   │   ├── data.ts
+│   │   │   ├── helpers.ts
+│   │   │   ├── types.ts
+│   │   │   └── __tests__/
+│   │   │       └── helpers.test.ts
+│   │   ├── App.tsx                  # Root component
+│   │   └── main.tsx                 # Entry point
+│   ├── .env                         # Frontend environment variables
+│   ├── index.html
+│   ├── package.json
+│   ├── tsconfig.json
+│   └── vite.config.ts
+│
+└── backend/                         # Express API server
+    ├── src/
+    │   ├── db/
+    │   │   └── fileDb.ts            # JSON file-based data layer
+    │   ├── middleware/
+    │   │   └── errorHandler.ts      # Global error handling middleware
+    │   ├── routes/
+    │   │   └── users.ts             # User route handlers
+    │   └── server.ts                # Express app entry point
+    ├── scripts/
+    │   └── sync-db.cjs              # Database seeding script
+    ├── db.json                      # Local JSON database
+    ├── .env                         # Backend environment variables
+    ├── package.json
+    └── tsconfig.json
 ```
 
 ## 🎨 Key Features Implementation

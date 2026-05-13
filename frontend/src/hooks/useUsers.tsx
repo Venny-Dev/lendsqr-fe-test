@@ -22,19 +22,17 @@ export function useUsers() {
     queryFn: () => getUsers(),
   });
 
-  const isDataApiArray = Array.isArray(dataApi);
+  // Backend returns { data: User[], total: number, message: string }
+  const users: User[] = Array.isArray(dataApi?.data) ? dataApi.data : [];
 
   const activeUsers = useMemo(() => {
-    if (isDataApiArray) {
-      return dataApi.filter((user: any) => user.status === "Active").length;
-    }
-    return 0;
-  }, [dataApi, isDataApiArray]);
+    return users.filter((user) => user.status === "Active").length;
+  }, [users]);
 
   const filteredData = useMemo(() => {
-    if (!Array.isArray(dataApi)) return [];
+    if (users.length === 0) return [];
 
-    let result = [...dataApi];
+    let result = [...users];
 
     // Get all filter params
     const filters = {
@@ -100,7 +98,7 @@ export function useUsers() {
     }
 
     return result;
-  }, [dataApi, searchParams]);
+  }, [users, searchParams]);
 
   const {
     paginatedData,
@@ -127,13 +125,15 @@ export function useUsers() {
 }
 
 export function useUser(id: string | null) {
-  const { data: user, isLoading } = useQuery({
+  const { data: response, isLoading } = useQuery({
     queryKey: ["user", id],
     queryFn: () => getUserById(id!),
     enabled: !!id,
   });
 
-  // console.log(user);
+  // Backend returns { data: IUserDetails, message: string }
+  const user = response?.data ?? undefined;
+
   return { user, isLoading };
 }
 
